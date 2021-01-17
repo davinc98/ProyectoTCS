@@ -6,18 +6,22 @@
 package interfaz;
 
 import java.util.ArrayList;
+import proyectotcs.OperacionesBasicas;
 
 /**
  *
  * @author J.PEREZ
  */
 public class Inicio extends javax.swing.JFrame {
+    
+    private OperacionesBasicas OP;
 
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        OP = new OperacionesBasicas();
     }
 
     /**
@@ -371,82 +375,11 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String [] Xn = jTextField1.getText().split(",");        
-        String [] Hn = jTextField3.getText().split(",");
-        
-        System.out.print("Xn: ");
-        for(String e: Xn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
-        System.out.print("Hn: ");
-        for(String e: Hn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
-        
-        int indiceX = Integer.parseInt(jTextField4.getText());
-        int indiceH = Integer.parseInt(jTextField2.getText());        
-        
-        int posX = Xn.length - indiceX;
-        int negX = Xn.length - posX;        
-        int posH = Hn.length - indiceH;
-        int negH = Hn.length - posH;        
-        
-        int posT = 0;int negT = 0;        
-        if(negX>=negH)
-            negT=negX;
-        else
-            negT=negH;        
-        
-        if(posX>=posH)
-            posT = posX;
-        else
-            posT = posH;
-        
-        System.out.println("Elem Neg: "+negT);
-        System.out.println("Elem Pos: "+posT);
-        
-        Double [] Gn = new Double[posT+negT];
-        for(int i=0; i<posT+negT; i++){Gn[i]=0.0;}
-        
-        System.out.print("Gn: ");
-        for(Double e: Gn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
-        
-        //Sumar Negativos
-        for(int i=negT; i>=0; i--){
-            Double xn, hn;
-            
-            if(indiceX-i>=0)
-                xn= Double.parseDouble(Xn[indiceX-i]);
-            else
-                xn=0.0;              
-            if(indiceH-i>=0)                
-                hn = Double.parseDouble(Hn[indiceH-i]);
-            else
-                hn=0.0;       
-            Gn[negT-i]= xn+hn;
-        }
-        
-        //Sumar positivos desde cero
-        for(int i=0; i<posT; i++){
-            Double xn, hn;
-            
-            if(indiceX+i<Xn.length)
-                xn= Double.parseDouble(Xn[indiceX+i]);
-            else
-                xn=0.0;             
-            if(indiceH+i<Hn.length)                
-                hn = Double.parseDouble(Hn[indiceH+i]);
-            else
-                hn=0.0;         
-            Gn[negT+i]= xn+hn;
-        }    
-        
-        System.out.print("Suma: ");
-        for(Double e: Gn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
+        String XN = jTextField1.getText();
+        String HN = jTextField3.getText();
+        Integer iX = Integer.parseInt(jTextField4.getText());
+        Integer iH = Integer.parseInt(jTextField2.getText());
+        OP.Sumar(XN,HN,iX,iH);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -456,82 +389,11 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String [] Xn = jTextField1.getText().split(",");        
-        String [] Hn = jTextField3.getText().split(",");
-        
-        System.out.print("Xn: ");
-        for(String e: Xn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
-        System.out.print("Hn: ");
-        for(String e: Hn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
-        
-        int indiceX = Integer.parseInt(jTextField4.getText());
-        int indiceH = Integer.parseInt(jTextField2.getText());        
-        
-        int posX = Xn.length - indiceX;
-        int negX = Xn.length - posX;        
-        int posH = Hn.length - indiceH;
-        int negH = Hn.length - posH;        
-        
-        int posT = 0;int negT = 0;        
-        if(negX>=negH)
-            negT=negX;
-        else
-            negT=negH;        
-        
-        if(posX>=posH)
-            posT = posX;
-        else
-            posT = posH;
-        
-        System.out.println("Elem Neg: "+negT);
-        System.out.println("Elem Pos: "+posT);
-        
-        Double [] Gn = new Double[posT+negT];
-        for(int i=0; i<posT+negT; i++){Gn[i]=0.0;}
-        
-        System.out.print("Gn: ");
-        for(Double e: Gn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
-        
-        //Sumar Negativos
-        for(int i=negT; i>=0; i--){
-            Double xn, hn;
-            
-            if(indiceX-i>=0)
-                xn= Double.parseDouble(Xn[indiceX-i]);
-            else
-                xn=0.0;              
-            if(indiceH-i>=0)                
-                hn = Double.parseDouble(Hn[indiceH-i]);
-            else
-                hn=0.0;       
-            Gn[negT-i]= xn-hn;
-        }
-        
-        //Sumar positivos desde cero
-        for(int i=0; i<posT; i++){
-            Double xn, hn;
-            
-            if(indiceX+i<Xn.length)
-                xn= Double.parseDouble(Xn[indiceX+i]);
-            else
-                xn=0.0;             
-            if(indiceH+i<Hn.length)                
-                hn = Double.parseDouble(Hn[indiceH+i]);
-            else
-                hn=0.0;         
-            Gn[negT+i]= xn-hn;
-        }    
-        
-        System.out.print("Resta: ");
-        for(Double e: Gn)
-            System.out.print(""+e+",");
-        System.out.println(" ");
+        String XN = jTextField1.getText();
+        String HN = jTextField3.getText();
+        Integer iX = Integer.parseInt(jTextField4.getText());
+        Integer iH = Integer.parseInt(jTextField2.getText());
+        OP.Restar(XN,HN,iX,iH);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
